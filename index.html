@@ -1,4 +1,17 @@
- var trArray = [];
+<div class="row">
+        <div class="col-md-12">
+            <form action="<?php echo base_url('test/getSessionData'); ?>" method="post">
+
+                <input type="hidden" name="arraydata" id="arraydata">
+            <button class="dropbtnblue btn btn-success btn-lg center-block" type="submit"> Continio -></button>
+            </form>
+        </div>
+
+    </div>
+ 
+
+
+var trArray = [];
         $('#example tbody').on( 'click', 'tr', function () {
 
             $(this).toggleClass('selected');
