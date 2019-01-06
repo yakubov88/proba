@@ -1,22 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <H3>Proba</H3>
-</head>
-<body>
-<div class="class">
+ var trArray = [];
+        $('#example tbody').on( 'click', 'tr', function () {
 
-    <p>smqna .....</p>
+            $(this).toggleClass('selected');
 
-</div>
-<div class="div">
+            var tableData = $(this).children('td').map(function () {
+                return $(this).text();
+            }).get();
 
-    <a href="#">tikla ....</a>
+            if ($(this).hasClass('selected'))
+            {
+                trArray.push(tableData);
+            }else{
+                trArray = removeByValue(trArray, tableData);
+            }
+            console.log(trArray);
+
+        } );
+
+        function removeByValue(array, value){
+            return array.filter(function(elem, _index){
+                // Compares length and every element inside array
+                return !(elem.length==value.length && elem.every(function(v,i) { return v === value[i]}))
+            });
+        }
+
+        $('.dropbtnblue').on('click', function(e){
+
+            $('#arraydata').val(JSON.stringify(trArray));
+
+        });
 
 
-</div>
+public function getSessionData()
+    {
 
-</body>
-</html>
+        $jsondecod =  json_decode($this->input->post('arraydata'));
+          $this->session->set_userdata('arraydata',$jsondecod);
+        $data = $this->session->userdata('arraydata');
+        echo gettype($data);
+        echo '<pre>';
+         print_r($data);
+
+         echo '</pre>';
+
+         foreach ($data as $value)
+         {
+             echo $value[0].' '.$value[1].'<br>';
+         }
+
+    }
