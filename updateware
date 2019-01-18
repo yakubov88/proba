@@ -1,0 +1,129 @@
+// model 
+
+function checkPosition($cell_id,$position){
+        $this->db->select('*')->from('coil')
+            ->where('cell_id', $cell_id)
+            ->where('active',1)
+            ->where('position', $position);
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        if ($result)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+// controller
+
+function insertCoilAndCell()
+    {
+
+
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if ($method == 'POST') {
+
+            $params = json_decode(file_get_contents('php://input'), TRUE);
+
+            if ((isset($params['coil']) && strlen($params['coil']) > 0) && (isset($params['cell']) && strlen($params['cell']) > 0) && (isset($params['position']) && strlen($params['position']) > 0) && (isset($params['user_id']) && strlen($params['user_id']) > 0)) {
+
+
+                $coil = trim($params['coil']);
+                $cell = trim($params['cell']);
+                $position = $params['position'];
+                $user_id = $params['user_id'];
+
+                // if($this->ServiceModel->checkCoilNav($coil)){
+
+                if (!$this->ServiceModel->coilExist($coil)) {
+
+
+                    if ($this->ServiceModel->cellBusy($cell)) {
+
+
+                        $cell_id = $this->ServiceModel->getCellId($cell);
+
+                        if ($this->ServiceModel->checkPosition($cell_id,$position))
+                        {
+
+                            $this->output
+                                ->set_content_type('application/json')
+                                ->set_output(json_encode(array('status' => 400, 'message' => 'Позицията е пълна моля изберете друга позиция ')));
+
+                            return false;
+                        }
+
+                        if ($this->cellCapacity($cell_id, $cell)) {
+
+                            if ($this->ServiceModel->insertCoil($user_id, $cell_id, $coil, $position)) {
+
+                                $active = 0;
+                                if ($this->ServiceModel->makeActiveCell($cell, $active)) {
+                                    $n_cell = $cell . '.' . $position;
+                                    // if($this->ServiceModel->makeRecordNav($coil, $n_cell)){
+                                    $this->output
+                                        ->set_content_type('application/json')
+                                        ->set_output(json_encode(array('status' => 200, 'message' => 'Опаковка ' . $coil . ' беше записанa в клетка ' . $cell . '.' . $position)));
+                                    //  }else{
+                                    //      $this->output
+                                    //          ->set_content_type('application/json')
+                                    //          ->set_output(json_encode(array('status' => 200, 'message' => '')));
+                                    //  }
+                                }
+                            }
+                        } else {
+                            $cell_id = $this->ServiceModel->getCellId($cell);
+
+                            if ($this->ServiceModel->insertCoil($user_id, $cell_id, $coil, $position)) {
+                                $active = 1;
+                                if ($this->ServiceModel->makeActiveCell($cell, $active)) {
+                                    $n_cell = $cell . '.' . $position;
+                                    // if($this->ServiceModel->makeRecordNav($coil, $n_cell)){
+                                    $this->output
+                                        ->set_content_type('application/json')
+                                        ->set_output(json_encode(array('status' => 200, 'message' => 'Опаковка ' . $coil . ' беше записанa в клетка ' . $cell . '.' . $position)));
+                                    // }else{
+                                    //     $this->output
+                                    //         ->set_content_type('application/json')
+                                    //         ->set_output(json_encode(array('status' => 200, 'message' => '')));
+                                    // }
+                                }
+                            }
+                        }
+                    } else {
+                        $this->output
+                            ->set_content_type('application/json')
+                            ->set_output(json_encode(array('status' => 400, 'message' => 'Пълен капацитет или несъществуваща клетка')));
+                    }
+                } else {
+
+                    if ($this->ServiceModel->getActiveCell($coil)) {
+                        $cell_old = $this->ServiceModel->getActiveCell($coil);
+                    } else {
+                        $cell_old = $this->ServiceModel->getCell($coil);
+                    }
+
+                    $this->output
+                        ->set_content_type('application/json')
+                        ->set_output(json_encode(array('status' => 400, 'message' => 'Опаковка ' . $coil . ' вече е складиранa, в клетка ' . $cell_old)));
+                }
+
+                // }else{
+                //         $this->output
+                //             ->set_content_type('application/json')
+                //             ->set_output(json_encode(array('status' => 400, 'message' =>"Невалидна опаковка, не съществува в Навижън")));
+                // }
+            } else {
+                $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode(array('status' => 400, 'message' => 'Задължителни са всички параметри')));
+            }
+        } else {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('status' => 400, 'message' => 'Лоша заявка!')));
+        }
+    }
