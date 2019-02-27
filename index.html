@@ -1,3 +1,31 @@
+//===================================================================================================================
+ <div class="col-md-3">
+                                <select name="" id="" class="form-control text-center ">
+                                    <?php
+                                    $year           = date('Y');
+                                    $firstDayOfYear = mktime(0, 0, 0, 1, 1, $year);
+                                    $nextMonday     = strtotime('monday', $firstDayOfYear);
+                                    $nextSunday     = strtotime('friday', $nextMonday);
+                                    $number = 1;
+                                    while (date('Y', $nextMonday) == $year) {
+                                        $number+=1;
+
+                                        $week =  date('Y-m-d', $nextMonday). ' --- ' . date('Y-m-d', $nextSunday);
+                                        ?>
+                                        <option value="" ><?php echo $week ?></option>
+                                        <?php
+                                        $nextMonday = strtotime('+1 week', $nextMonday);
+                                        $nextSunday = strtotime('+1 week', $nextSunday);
+                                    }
+
+                                    ?>
+                                </select>
+
+                            </div>
+
+
+
+//==================================================================================================================
 <div class="row">
         <div class="col-md-12">
             <form action="<?php echo base_url('test/getSessionData'); ?>" method="post">
