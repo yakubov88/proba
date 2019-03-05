@@ -1,0 +1,33 @@
+function buildTree($elements, $parentId = 0)
+{
+    $branch = array();
+
+    foreach ($elements as $element) {
+        if ($element->parent_id == $parentId) {
+            $children = buildTree($elements, $element->id);
+
+            if ($children) {
+                $element->children = $children;
+            } else {
+                $element->children = array();
+            }
+            $branch[] = $element;
+        }
+    }
+
+    return $branch;
+}
+
+function drawElements($items)
+{
+    echo "<ol class='tree'>";
+        foreach ($items as $item)
+        {
+            echo "<li><label for='$item->title'>".$item->title."</label><input type='checkbox' id='$item->title' name='$item->id' data-id = '$item->id' /></li>";
+
+            if (sizeof($item->children)>0){
+                drawElements($item->children);
+            }
+        }
+     echo "</ol>";
+}
