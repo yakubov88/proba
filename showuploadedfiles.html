@@ -1,0 +1,39 @@
+<?php
+    if (isset($img_shop) && count($img_shop) > 0) {
+        echo '<div class="row box" style="height: 300px;padding-top: 5px;">
+        <div id="owl-example-shop" class="owl-carousel">';
+        $countSales = count($img_shop);
+        $countRows = 1;
+        while (($countRows - 1) * 12 < $countSales) {
+            if ($countSales <= $countRows * 12) {
+                $tempBegin = ($countRows - 1) * 12;
+                $tempEnd = $countSales;
+                $countRows++;
+            } else {
+                $tempBegin = ($countRows * 12) - 12;
+                $tempEnd = $countRows * 12;
+                $countRows++;
+            }
+
+            for ($i = $tempBegin; $i < $tempEnd; $i++) {
+                if (!preg_match('/^.*\.(mp4|mov)$/i', $img_shop[$i]['file_name'])) {
+                    if (preg_match("/\.pdf|.docx|.doc|.xls|.xlsx|.txt/i", $img_shop[$i]['file_name'])) {
+
+                        echo '<div class="item"><a target="_blank" href="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' .  $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '"></a></div>';
+                    } else {
+
+                        echo '<div class="item"><a target="_blank" href="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '"><img src="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '" /></a></div>';
+                    }
+                } else {
+
+                    echo '<div class="item"><a target="_blank" href="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '"><video width="250" height="200" controls>
+                                <source src="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '" type="video/mp4">
+                                <source src="' . base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/Shop/' . $img_shop[$i]['file_name'] . '" type="video/ogg">
+                                Your browser does not support the video tag.
+                                </video></a></div>';
+                }
+            }
+        }
+        echo '</div></div>';
+    }
+    ?>
