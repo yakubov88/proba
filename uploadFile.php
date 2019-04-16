@@ -1,7 +1,8 @@
+
 public function uploadFile($id, $departmant)
     {
 
-        echo $id;
+
 
         if (!empty($_FILES['files']['name'])) {
 
@@ -36,12 +37,15 @@ public function uploadFile($id, $departmant)
                         'file_name' => $fileData['file_name'],
                         'department' => $departmant
 
-
                     );
                     $this->claimmodel->addFile($data);
                 }
             }
-
         }
-
     }
+                
+                
+    public function addFile($data = array())
+    {
+        return $this->db->insert('files', $data);
+    }            
