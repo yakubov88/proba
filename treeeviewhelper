@@ -32,6 +32,7 @@ function drawElements($items)
      echo "</ol>";
 }
 // get all children node  for parent - as list 
+// https://stackoverflow.com/questions/11497202/get-all-child-grandchild-etc-nodes-under-parent-using-php-with-mysql-query-resu
 function fetch_recursive($tree, $parent_id, $parentfound = false, $list = array())
 {
     foreach($tree as $k => $v)
