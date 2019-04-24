@@ -31,3 +31,23 @@ function drawElements($items)
         }
      echo "</ol>";
 }
+// get all children node  for parent - as list 
+function fetch_recursive($tree, $parent_id, $parentfound = false, $list = array())
+{
+    foreach($tree as $k => $v)
+    {
+        if($parentfound || $k == $parent_id)
+        {
+            $rowdata = array();
+            foreach($v as $field => $value)
+                if($field != 'children')
+                    $rowdata[$field] = $value;
+            $list[] = $rowdata;
+            if($v['children'])
+                $list = array_merge($list, fetch_recursive($v['children'], $parent_id, true));
+        }
+        elseif($v['children'])
+            $list = array_merge($list, fetch_recursive($v['children'], $parent_id));
+    }
+    return $list;
+}
