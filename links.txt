@@ -1,1 +1,2 @@
 https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html#Framework
+https://www.journaldev.com/741/java-socket-programming-server-client
