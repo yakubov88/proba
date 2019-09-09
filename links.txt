@@ -1,3 +1,4 @@
 https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html#Framework
 https://www.journaldev.com/741/java-socket-programming-server-client
 https://thoughts-on-java.org/jpa-native-queries/
+https://www.journaldev.com/17379/jpa-entitymanager-hibernate
