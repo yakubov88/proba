@@ -2,3 +2,4 @@ https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html#F
 https://www.journaldev.com/741/java-socket-programming-server-client
 https://thoughts-on-java.org/jpa-native-queries/
 https://www.journaldev.com/17379/jpa-entitymanager-hibernate
+https://www.baeldung.com/spring-security-login
