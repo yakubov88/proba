@@ -3,3 +3,5 @@ https://www.journaldev.com/741/java-socket-programming-server-client
 https://thoughts-on-java.org/jpa-native-queries/
 https://www.journaldev.com/17379/jpa-entitymanager-hibernate
 https://www.baeldung.com/spring-security-login
+
+https://egghead.io/lessons/angular-pass-values-into-angular-2-components-with-input
