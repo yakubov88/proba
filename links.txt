@@ -5,3 +5,4 @@ https://www.journaldev.com/17379/jpa-entitymanager-hibernate
 https://www.baeldung.com/spring-security-login
 
 https://egghead.io/lessons/angular-pass-values-into-angular-2-components-with-input
+https://www.npmjs.com/package/angular2-multiselect-dropdown
