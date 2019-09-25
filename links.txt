@@ -9,3 +9,4 @@ https://www.npmjs.com/package/angular2-multiselect-dropdown
 https://appdividend.com/2018/11/04/angular-7-crud-example-mean-stack-tutorial/
 
 https://thoughts-on-java.org/jpa-native-queries/
+http://www.sqlservertutorial.net/sql-server-string-functions/#
