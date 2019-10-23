@@ -12,3 +12,4 @@ https://thoughts-on-java.org/jpa-native-queries/
 http://www.sqlservertutorial.net/sql-server-string-functions/#
 https://www.dofactory.com/sql/subquery
 https://www.youtube.com/watch?v=aXNX4tgYyXE&index=53&list=PU8Ob-HnnmhlgSv5Vs_i32TQ
+http://www.robotdevreleri.com/yemekhane-giris-sistemi/
