@@ -14,3 +14,4 @@ https://www.dofactory.com/sql/subquery
 https://www.youtube.com/watch?v=aXNX4tgYyXE&index=53&list=PU8Ob-HnnmhlgSv5Vs_i32TQ
 http://www.robotdevreleri.com/yemekhane-giris-sistemi/
 https://www.instructables.com/id/Arduino-Keyboard-Exploit-Demo-HID-and-Prevention/
+https://tronixstuff.com/tutorials/
