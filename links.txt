@@ -17,3 +17,4 @@ https://www.instructables.com/id/Arduino-Keyboard-Exploit-Demo-HID-and-Preventio
 https://tronixstuff.com/tutorials/
 https://tronixstuff.com/2013/11/19/arduino-tutorials-chapter-15-rfid/  "21488791062"
 https://www.youtube.com/watch?v=l8RDbHd1cak
+http://www.borakasmer.com/angularjs-2-nedir-bolum-2/
