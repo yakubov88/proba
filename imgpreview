@@ -1,0 +1,13 @@
+<?php if (isset($img_sales) && count($img_sales) > 0) { ?>
+    <div class="row box p-2" id="">
+        <?php foreach ($img_sales as $file){?>
+
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="<?php echo base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/sales/' . $file['file_name'];?>" class="d-block mb-4 h-100" target="_blank">
+                    <img class="img-fluid img-thumbnail" src="<?php echo base_url() . 'uploads/' . $claim->vh_nomer . '_' . $claim->vh_nomer_date . '/sales/' . $file['file_name'];?>" alt="">
+                </a>
+            </div>
+        <?php } ?>
+    </div>
+    <?php } ?>
